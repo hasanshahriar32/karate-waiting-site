@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noipunno</title>
+
+    <!-- Include Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <script>
+      var redirectTime = 5000; // 5000 milliseconds = 5 seconds
+      var redirectURL = "https://noipunno.paradox-bd.com";
+
+      // Function to update the countdown and redirect when it reaches zero
+      function updateCountdown() {
+        var countdownElement = document.getElementById("countdown");
+        var secondsRemaining = Math.ceil(redirectTime / 1000);
+
+        countdownElement.textContent = secondsRemaining;
+
+        if (secondsRemaining <= 0) {
+          redirectToAnotherSite();
+        } else {
+          redirectTime -= 1000;
+          setTimeout(updateCountdown, 1000);
+        }
+      }
+
+      // Function to redirect the user
+      function redirectToAnotherSite() {
+        window.location.href = redirectURL;
+      }
+
+      // Initialize the countdown on page load
+      window.onload = function () {
+        updateCountdown();
+      };
+    </script>
+  </head>
+  <body class="bg-gray-200 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded shadow-md text-center">
+      <h2 class="text-3xl mb-5">
+        <span class="font-semibold">Noipunno</span> waiting room
+      </h2>
+      <p class="text-lg mb-4">
+        This page will redirect you to unofficial Noipunno site in
+        <span id="countdown" class="font-bold text-xl">5</span> seconds.
+      </p>
+    </div>
+  </body>
+</html>
